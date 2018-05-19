@@ -1,0 +1,33 @@
+{
+  "name": "mern",
+  "version": "1.0.0",
+  "description": "Mern Demo",
+  "main": "server.js",
+  "scripts": {
+    "server": "node server.js",
+    "client": "node scripts/start-client.js",
+    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "build": "node scripts/build.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "dotenv": "^5.0.1",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "bcrypt": "^2.0.1",
+    "bcrypt-nodejs": "^0.0.3",
+    "connect-session-sequelize": "^5.2.1",
+    "express": "^4.15.4",
+    "express-session": "^1.15.6",
+    "mysql2": "^1.5.3",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0",
+    "passport-local": "^1.0.0",
+    "sequelize": "^4.37.7"
+  }
+}
