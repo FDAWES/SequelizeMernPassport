@@ -1,13 +1,22 @@
+// For the .env file to hide my credentials from the world
 const dotenv = require("dotenv").config();
+// Express
 const express = require("express");
+// Path
 const path = require("path");
+// Express Session
 const session = require("express-session");
+// Used to store our session info inside of MySQL
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
+// Body Parser
 const bodyParser = require("body-parser");
-const logger = require("morgan")("tiny");
-
+// Morgan Logger
+const logger = require("morgan")("dev");
+// My passport object configure with local (and potentially ) google strategy.
 const passport = require("./passport");
+// Pulling in my controllers to handle routing
 const routes = require("./controllers");
+// Grabbing my db connection
 const db = require("./models");
 
 const PORT = process.env.PORT || 3001;
@@ -19,7 +28,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//passport
+// Setup express to use sessions and also to save session information inside of MySQL
 app.use(
   session(
     { 
@@ -32,12 +41,14 @@ app.use(
     }
   )
 );
+
+// Initialize the passport middleware and session.
 app.use(passport.initialize());
 app.use(passport.session());
-
+// Telling Express to use Morgan
 app.use(logger);
 
-//controllers
+// Informing Express about my routes
 app.use(routes);
 
 //#endregion MIDDLEWARE
